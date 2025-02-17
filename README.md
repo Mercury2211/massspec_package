@@ -30,12 +30,6 @@ You can install the package directly from GitHub:
 pip install git+https://github.com/Mercury2211/massspec_package.git
 ```
 
-Alternatively, if you have a built version:
-
-```bash
-pip install dist/massspec_package-0.1.0-py3-none-any.whl
-```
-
 ## Usage
 
 ### Running the GUI Application
@@ -64,6 +58,9 @@ print("MassSpec Package Version:", massspec_package.__version__)
 # Example usage
 processor = DataProcessor("C:/path/to/data")
 ```
+
+A GUI will appear which allows you to select two folders. One for the measurement and a second one for the background measurement.
+
 
 ## Repository Structure
 
