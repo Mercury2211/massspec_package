@@ -1,124 +1,81 @@
 # MassSpec Package
 
 ## Overview
-
-MassSpec Package is a Python package for processing and visualizing mass spectrometry data. It supports data from Acqiris ADC cards used in time-of-flight mass spectrometry (TOF-MS). The package provides functionality for decoding `.data32` files, computing summed voltages, and analyzing waveform intensities.
-
-## Features
-- Analyze recordings from Acqiris ADC cards for TOF-MS.
-- Load and decode `.data32` files.
-- Compute and visualize summed voltage differences.
-- Plot intensity changes over time from recorded waveforms.
-- Plot selected single waveforms from `.data32` files.
-- Interactive GUI for selecting data folders and processing data.
-- Supports progress tracking with a progress bar.
-- Multi-threaded processing for efficiency.
-
-## Package Functions
-### **1️⃣ DataProcessor** (`data_processor.py`)
-Handles file loading and decoding of `.data32` files. It processes the recorded data and computes summed voltages for further analysis.
-
-### **2️⃣ VoltagePlotter** (`voltage_plotter.py`)
-Plots the voltage differences between measurement and background data, providing a visual representation of the mass spectrometry output.
-
-### **3️⃣ IntensityOverTime & SingleWaveform** (`intensity_over_time.py` and `single_waveform.py`)
-- **IntensityOverTime**: Computes and visualizes intensity changes over time for recorded waveforms.
-- **SingleWaveform**: Extracts and plots individual waveforms from `.data32` files for detailed analysis.
-
-- Analyze recordings from Acqiris ADC cards for TOF-MS.
-- Load and decode `.data32` files.
-- Compute and visualize summed voltage differences.
-- Plot intensity changes over time from recorded waveforms.
-- Plot selected single waveforms from `.data32` files.
-- Interactive GUI for selecting data folders and processing data.
-- Supports progress tracking with a progress bar.
-- Multi-threaded processing for efficiency.
-
-## Installation
-
-### Installing from GitHub
-
-To install the package directly from GitHub, run:
-
-```bash
-pip install git+https://github.com/Mercury2211/massspec_package.git
-```
-
-### Installing from Source
-
-If you have downloaded the source code, navigate to the package directory and install using:
-
-```bash
-pip install .
-```
-
-## Usage
-
-### Running the GUI Application
-
-You can launch the GUI using:
-
-```bash
-python -m massspec_package.gui
-```
-
-Or, if using the provided script:
-
-```bash
-python run_app.py
-```
-
-### Using the Package in a Script
-
-```python
-import massspec_package
-from massspec_package.data_processor import DataProcessor
-from massspec_package.voltage_plotter import VoltagePlotter
-from massspec_package.intensity_over_time import IntensityOverTime
-from massspec_package.single_waveform import SingleWaveform
-
-print("MassSpec Package Version:", massspec_package.__version__)
-
-# Example usage
-processor = DataProcessor("C:/path/to/data")
-intensity_analyzer = IntensityOverTime(processor)
-single_waveform_viewer = SingleWaveform(processor)
-```
-
-## Repository Structure
-
-```
-massspec_package/
-│── src/
-│   ├── massspec_package/
-│   │   ├── __init__.py
-│   │   ├── data_processor.py
-│   │   ├── voltage_plotter.py
-│   │   ├── intensity_over_time.py
-│   │   ├── single_waveform.py
-│   │   ├── gui.py
-│── README.md
-│── LICENSE
-│── pyproject.toml
-│── run_app.py
-```
-
-## Citation
-
-If this package is used in academic work (including but not limited to Master's theses and PhD dissertations), please cite it as:
-
-**Alex Iseli, *************************MassSpec Package*************************, 2025. Available at:**\
-[https://github.com/Mercury2211/massspec\_package](https://github.com/Mercury2211/massspec_package)
-
-## License
-
-This package is for personal use and academic research only. Modification, redistribution, or commercial use is **not permitted** without explicit written permission from the author. See the `LICENSE` file for full details.
-
-## Author
-
-Developed by Alex Iseli.
+The **MassSpec Package** is designed for analyzing recordings from an **Acqiris ADC card** for **Time-of-Flight Mass Spectrometry (TOF-MS)**.  
+It provides a GUI-based interface to process and visualize data.
 
 ---
 
-For issues or feature requests, visit the [GitHub repository](https://github.com/Mercury2211/massspec_package).
+## **Installation**
+To install the package, use:
+```sh
+pip install git+https://github.com/Mercury2211/massspec_package.git
+```
+Ensure you have `numpy`, `matplotlib`, and `tkinter` installed.
+
+---
+
+## **Launching the GUI**
+The package provides three different GUI applications for mass spectrometry analysis.  
+Each GUI can be launched with **a single line of code**.
+
+### **1️⃣ Difference Plotter GUI**
+Used for **Subtracting a Background Measurement from a Measurement**.
+```python
+import massspec_package
+massspec_package.launch_difference_plotter()
+```
+✅ **Title:** "Background Subtraction"
+
+---
+
+### **2️⃣ Intensity Over Time GUI**
+Used for **visualizing signal intensity over time**.
+```python
+import massspec_package
+massspec_package.launch_intensity_gui()
+```
+✅ **Title:** "Intensity Over Time Analysis"
+
+---
+
+### **3️⃣ Single Waveform Analysis GUI**
+Used for **plotting selected waveform files**.
+```python
+import massspec_package
+massspec_package.launch_single_waveform_gui()
+```
+✅ **Title:** "Single Waveform Analysis"
+
+---
+
+## **Manual Usage**
+For advanced users, you can manually interact with the classes:
+
+```python
+from massspec_package.data_processor import DataProcessor
+processor = DataProcessor("C:/path/to/data")
+voltages = processor.calculate_summed_voltages()
+print(voltages)
+```
+
+```python
+from massspec_package.voltage_plotter import VoltagePlotter
+plotter = VoltagePlotter(measurement_processor, background_processor)
+plotter.plot_difference()
+```
+
+---
+
+## **License**
+This package is provided under a **custom license** for **personal and academic use**.  
+If used in academic work (e.g., Master Thesis, Research Papers), **citation is required**.  
+For any **commercial use**, a **formal request is required**.
+
+---
+
+## **Contact**
+For issues or contributions, please submit a GitHub issue or contact:  
+📧 **iseli.alex.5@gmail.com**  
+👤 **GitHub:** [Mercury2211](https://github.com/Mercury2211)
 
