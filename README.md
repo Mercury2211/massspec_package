@@ -16,12 +16,13 @@ Ensure you have `numpy`, `matplotlib`, and `tkinter` installed.
 ---
 
 ## **Launching the GUI**
-The package provides three different GUI applications for mass spectrometry analysis.  
-Each GUI can be launched with **a single line of code**. Each GUI has the option to store the data
-used for the plot either in a txt or csv file for further analysis.
+The package provides three different GUI applications for mass spectrometry analysis.
+Each GUI can be launched with a single line of code. Every GUI also offers the option to save the data
+used for plotting—either as a .txt or .csv file—for further analysis.
 
 ### **1️⃣ Difference Plotter GUI**
-Used for **Subtracting a Background Measurement from a Measurement**.
+Used for **Subtracting a Background Measurement from a Measurement**. Therefore, select two folders
+(one for the measurement and one for the background).
 ```python
 import massspec_package
 massspec_package.launch_difference_plotter()
@@ -31,7 +32,10 @@ massspec_package.launch_difference_plotter()
 ---
 
 ### **2️⃣ Intensity Over Time GUI**
-Used for **visualizing signal intensity over time**.
+Used for visualizing signal intensity over time. First, select a measurement folder. The program automatically plots the 
+first measurement from the folder, which helps you choose an x-range in which the program will find the maximum value. 
+These maximum values are then plotted over “time.” (Tip: Select an x-range that encloses the desired mass peak. This ensures 
+the final plot shows the intensity of that specific peak over time.)
 ```python
 import massspec_package
 massspec_package.launch_intensity_gui()
@@ -41,7 +45,8 @@ massspec_package.launch_intensity_gui()
 ---
 
 ### **3️⃣ Single Waveform Analysis GUI**
-Used for **plotting selected waveform files**.
+Used for **plotting selected waveform files**. First, select a measurement folder. You can then pick the 
+specific waveforms of interest.
 ```python
 import massspec_package
 massspec_package.launch_single_waveform_gui()
