@@ -152,6 +152,6 @@ class App:
         self.voltage_plotter.set_skip_interval(skip_interval)
         self.voltage_plotter.plot_max_values()
 
-root = tk.Tk()
-app = App(root)
-root.mainloop()
+#root = tk.Tk()
+#app = App(root)
+#root.mainloop()

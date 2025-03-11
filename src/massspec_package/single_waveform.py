@@ -104,6 +104,6 @@ class App:
         self.voltage_plotter.plot_selected_waveforms()
 
 
-root = tk.Tk()
-app = App(root)
-root.mainloop()
+#root = tk.Tk()
+#app = App(root)
+#root.mainloop()
