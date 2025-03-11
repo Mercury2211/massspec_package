@@ -2,11 +2,14 @@ import os
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import threading
+
 from .data_processor import DataProcessor
 from .voltage_plotter import VoltagePlotter
 
 class App:
     def __init__(self, root):
+        print("DEBUG: App.__init__ is running! (Difference Plotter)")  # <-- Debug print
+
         self.root = root
         self.measurement_folder = None
         self.background_folder = None
@@ -17,7 +20,7 @@ class App:
 
         # Configure the GUI window
         self.root.title("Voltage Data Processor")
-        self.root.geometry("500x450")
+        self.root.geometry("800x500")
         self.root.config(bg="#f0f0f5")
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
@@ -63,6 +66,10 @@ class App:
 
         close_button = ttk.Button(button_frame, text="Close", command=self.on_closing)
         close_button.grid(row=0, column=2, padx=10)
+
+        # NEW: Add a "Save Data" button to save the difference array
+        save_button = ttk.Button(button_frame, text="Save Data", command=self.save_data)
+        save_button.grid(row=0, column=3, padx=10)
 
     def select_measurement_folder(self):
         self.measurement_folder = filedialog.askdirectory(title="Select Measurement Folder")
@@ -120,6 +127,31 @@ class App:
             self.voltage_plotter.plot_difference()
         else:
             messagebox.showinfo("No Data", "Data has not been processed yet. Please use 'Process and Plot' first.")
+
+    def save_data(self):
+        """
+        Save the difference array (voltage_plotter.difference) to a text or CSV file.
+        """
+        if not hasattr(self, 'voltage_plotter') or self.voltage_plotter.difference is None:
+            messagebox.showwarning("No Data", "No difference data to save. Please process first.")
+            return
+
+        file_path = filedialog.asksaveasfilename(
+            title="Save Difference Data",
+            defaultextension=".txt",
+            filetypes=[("Text Files", "*.txt"), ("CSV Files", "*.csv")]
+        )
+
+        if not file_path:  # user canceled
+            return
+
+        try:
+            with open(file_path, "w") as f:
+                for val in self.voltage_plotter.difference:
+                    f.write(str(val) + "\n")
+            messagebox.showinfo("Data Saved", f"Difference data successfully saved to:\n{file_path}")
+        except Exception as e:
+            messagebox.showerror("Error Saving Data", str(e))
 
     def on_closing(self):
         self.stop_event.set()  # Signal the processing thread to stop
