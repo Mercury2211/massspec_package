@@ -78,6 +78,15 @@ This package is provided under a **custom license** for **personal and academic 
 If used in academic work (e.g., Master Thesis, Research Papers), **citation is required**.  
 For any **commercial use**, a **formal request is required**.
 
+## Citation
+If you use the MassSpec Package in academic work, please cite it as follows:
+
+**Iseli, Alex (2025). *MassSpec Package* (Version 0.2.0) [Computer software].**  
+Retrieved from [https://github.com/Mercury2211/massspec_package](https://github.com/Mercury2211/massspec_package)
+
+*(Feel free to adapt this format to your institution’s citation style. For instance, APA, IEEE, etc. may have specific guidelines.)*
+
+
 ---
 
 ## **Contact**
