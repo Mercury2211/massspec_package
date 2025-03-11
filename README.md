@@ -17,7 +17,8 @@ Ensure you have `numpy`, `matplotlib`, and `tkinter` installed.
 
 ## **Launching the GUI**
 The package provides three different GUI applications for mass spectrometry analysis.  
-Each GUI can be launched with **a single line of code**.
+Each GUI can be launched with **a single line of code**. Each GUI has the option to store the data
+used for the plot either in a txt or csv file for further analysis.
 
 ### **1️⃣ Difference Plotter GUI**
 Used for **Subtracting a Background Measurement from a Measurement**.
