@@ -94,12 +94,12 @@ class App:
         self.root = root
         self.measurement_folder = None
         
-        self.root.title("Voltage Data Processor")
+        self.root.title("Intensity over Time Analysis")
         self.root.geometry("800x600")
         self.init_ui()
 
     def init_ui(self):
-        ttk.Label(self.root, text="Voltage Data Processor", font=("Helvetica", 14, "bold")).pack(pady=10)
+        ttk.Label(self.root, text="Intensity over Time Analysis", font=("Helvetica", 14, "bold")).pack(pady=10)
         
         folder_frame = ttk.Frame(self.root, padding=10)
         folder_frame.pack(pady=10, fill="x")
