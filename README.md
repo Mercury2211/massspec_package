@@ -131,7 +131,7 @@ For any **commercial use**, a **formal request is required**.
 
 If you use MassSpec Package in academic work, cite as:
 
-> **Iseli, Alex (2025). *MassSpec Package* (Version 0.2.0) \[Computer software].**
+> **Iseli, Alex (2025). *MassSpec Package* (Version 1.0.0) \[Computer software].**
 > Retrieved from [https://github.com/Mercury2211/massspec\_package](https://github.com/Mercury2211/massspec_package)
 
 *(Adapt to your citation style: APA, IEEE, etc.)*
