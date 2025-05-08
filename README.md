@@ -1,96 +1,146 @@
 # MassSpec Package
 
-## Overview
-The **MassSpec Package** is designed for analyzing recordings from an **Acqiris ADC card** for **Time-of-Flight Mass Spectrometry (TOF-MS)**.  
-It provides a GUI-based interface to process and visualize data.
+**MassSpec Package** is a Python toolkit for analyzing recordings from an **Acqiris ADC card** for **Time-of-Flight Mass Spectrometry (TOF-MS)**. It provides both GUI applications and programmatic interfaces to process, calibrate, and visualize mass spectrometry data.
 
 ---
 
-## **Installation**
-To install the package, use:
-```sh
+## 🎉 What's New in v1.0.0
+
+* Added **Calibration GUI** for X‑ and Y‑axis calibration of TOF spectra.
+* Refactored GUI launch functions with clearer names.
+* Improved data loading and processing in `DataProcessor`.
+* Updated `VoltagePlotter` to separate calculation and plotting methods.
+
+---
+
+## 🚀 Installation
+
+Install directly from GitHub:
+
+```bash
 pip install git+https://github.com/Mercury2211/massspec_package.git
 ```
-Ensure you have `numpy`, `matplotlib`, and `tkinter` installed.
+
+Ensure you have the following dependencies:
+
+* `numpy`
+* `matplotlib`
+* `scipy`
+* `tkinter` (usually included with Python)
+* `Pillow` (`PIL`)
 
 ---
 
-## **Launching the GUI**
-The package provides three different GUI applications for mass spectrometry analysis.
-Each GUI can be launched with a single line of code. Every GUI also offers the option to save the data
-used for plotting—either as a .txt or .csv file—for further analysis.
+## 🖥️ Launching GUIs
 
-### **1️⃣ Difference Plotter GUI**
-Used for **Subtracting a Background Measurement from a Measurement**. Therefore, select two folders
-(one for the measurement and one for the background).
+Each GUI can be launched via a single function call. All GUIs allow exporting processed data (TXT or CSV).
+
 ```python
 import massspec_package
-massspec_package.launch_difference_plotter()
 ```
-✅ **Title:** "Background Subtraction"
 
----
+### 1️⃣ Background Subtractor (Difference Plotter)
 
-### **2️⃣ Intensity Over Time GUI**
-Used for visualizing signal intensity over time. First, select a measurement folder. The program automatically plots the 
-first measurement from the folder, which helps you choose an x-range in which the program will find the maximum value. 
-These maximum values are then plotted over “time.” (Tip: Select an x-range that encloses the desired mass peak. This ensures 
-the final plot shows the intensity of that specific peak over time.)
+Subtract a background measurement from a signal measurement:
+
 ```python
-import massspec_package
-massspec_package.launch_intensity_gui()
+massspec_package.launch_background_subtractor()
 ```
-✅ **Title:** "Intensity Over Time Analysis"
+
+* **Window Title:** "Background Subtractor"
+* Select a **Measurement Folder** and a **Background Folder**, then click **Process and Plot**.
 
 ---
 
-### **3️⃣ Single Waveform Analysis GUI**
-Used for **plotting selected waveform files**. First, select a measurement folder. You can then pick the 
-specific waveforms of interest.
+### 2️⃣ Intensity Over Time Analysis
+
+Plot the maximum signal intensity of a selected mass peak across a series of measurements:
+
 ```python
-import massspec_package
-massspec_package.launch_single_waveform_gui()
+massspec_package.launch_intensity_over_time()
 ```
-✅ **Title:** "Single Waveform Analysis"
+
+* **Window Title:** "Intensity over Time Analysis"
+* Select a **Measurement Folder**, set **X Min**, **X Max**, and **Skip Interval**, then click **Proceed**.
 
 ---
 
-## **Manual Usage**
-For advanced users, you can manually interact with the classes:
+### 3️⃣ Single Waveform Analysis
+
+Visualize individual waveform files from a measurement:
+
+```python
+massspec_package.launch_single_waveform_analysis()
+```
+
+* **Window Title:** "Single Waveform Analysis"
+* Select a **Measurement Folder**, choose one or more `.data32` files, then click **Proceed**.
+
+---
+
+### 4️⃣ Calibration GUI
+
+Perform X‑axis calibration (time-to-mass conversion) and optional Y‑axis calibration (pressure or normalization):
+
+```python
+massspec_package.launch_calibration()
+```
+
+* **Window Title:** "Calibration"
+* **Setup Tab:** Choose measurement and background folders and Y‑axis mode.
+* **Raw Plot Tab:** Preview background-subtracted signal.
+* **X‑Calibration Tab:** Select two time points (T₁, T₂) and their known masses (m₁, m₂) to compute calibration curve.
+* **Y‑Calibration Tab:** Fit peak intensities to partial pressures or normalize to 100.
+* **Final Tab:** View calibrated spectrum, toggle log scale, export data.
+
+---
+
+## 🔧 Manual Usage
+
+For scripting or advanced workflows, use the core classes:
 
 ```python
 from massspec_package.data_processor import DataProcessor
-processor = DataProcessor("C:/path/to/data")
-voltages = processor.calculate_summed_voltages()
-print(voltages)
-```
-
-```python
 from massspec_package.voltage_plotter import VoltagePlotter
-plotter = VoltagePlotter(measurement_processor, background_processor)
-plotter.plot_difference()
+
+# Sum voltages in a folder of .data32 files
+processor = DataProcessor("/path/to/data")
+summed = processor.calculate_summed_voltages()
+
+# Calculate difference between two folders
+mea = DataProcessor("/path/to/measurement")
+bkg = DataProcessor("/path/to/background")
+vp = VoltagePlotter(mea, bkg)
+vp.calculate_difference()
+# Plot programmatically
+vp.plot_difference()
 ```
 
 ---
 
-## **License**
+## 📄 License
+
 This package is provided under a **custom license** for **personal and academic use**.  
 If used in academic work (e.g., Master Thesis, Research Papers), **citation is required**.  
 For any **commercial use**, a **formal request is required**.
 
-## Citation
-If you use the MassSpec Package in academic work, please cite it as follows:
+---
 
-**Iseli, Alex (2025). *MassSpec Package* (Version 0.2.0) [Computer software].**  
-Retrieved from [https://github.com/Mercury2211/massspec_package](https://github.com/Mercury2211/massspec_package)
+## 📚 Citation
 
-*(Feel free to adapt this format to your institution’s citation style. For instance, APA, IEEE, etc. may have specific guidelines.)*
+If you use MassSpec Package in academic work, cite as:
 
+> **Iseli, Alex (2025). *MassSpec Package* (Version 0.2.0) \[Computer software].**
+> Retrieved from [https://github.com/Mercury2211/massspec\_package](https://github.com/Mercury2211/massspec_package)
+
+*(Adapt to your citation style: APA, IEEE, etc.)*
 
 ---
 
-## **Contact**
-For issues or contributions, please submit a GitHub issue or contact:  
-📧 **iseli.alex.5@gmail.com**  
-👤 **GitHub:** [Mercury2211](https://github.com/Mercury2211)
+## 🤝 Contact & Contributions
 
+* GitHub Issues: [https://github.com/Mercury2211/massspec\_package/issues](https://github.com/Mercury2211/massspec_package/issues)
+* Email: [iseli.alex.5@gmail.com](mailto:iseli.alex.5@gmail.com)
+* GitHub: [Mercury2211](https://github.com/Mercury2211)
+
+Pull requests and feedback are welcome!
