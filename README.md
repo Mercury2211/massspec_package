@@ -7,9 +7,10 @@
 ## 🎉 What's New in v1.0.0
 
 * Added **Calibration GUI** for X‑ and Y‑axis calibration of TOF spectra.
-* Refactored GUI launch functions with clearer names.
-* Improved data loading and processing in `DataProcessor`.
-* Updated `VoltagePlotter` to separate calculation and plotting methods.
+* Adding a user manual
+
+
+
 
 ---
 
