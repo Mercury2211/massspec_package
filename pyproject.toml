@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "massspec_package"
-version = "0.2.0"
+version = "1.0.0"
 authors = [
   { name="Alex Iseli", email="iseli.alex.5@gmail.com" }
 ]
@@ -14,7 +14,9 @@ requires-python = ">=3.8"
 license = { text = "MIT" }
 dependencies = [
   "numpy",
-  "matplotlib"
+  "matplotlib",
+  "scipy",
+  "Pillow",
 ]
 
 [project.urls]
